@@ -9,7 +9,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
-        body{
+        body {
             font-family: 'Varela Round', sans-serif;
             background-color: #fbf5f1;
         }
@@ -46,7 +46,7 @@
             border: 1px solid rgb(206, 202, 202);
         }
 
-        button:hover{
+        button:hover {
             background-color: #EFD3BF;
             transition: .8s all ease-out;
         }
@@ -190,16 +190,22 @@
         var txtPeso = (document.querySelector('#peso'));
         var txtAltura = (document.querySelector('#altura'));
 
-        function calcularImc() {//callback = função por parâmetro
+        function calcularImc() {
             var peso = parseFloat(txtPeso.value);
             var altura = parseFloat(txtAltura.value);
 
-            var imc = parseFloat(peso / (altura * altura)).toFixed(2);
+            if (isNaN(peso) || isNaN(altura)){
+                document.querySelector('#output').innerHTML =
+                    'Informe seu peso e altura em números, não deixe os espaços vazios.';
+            }
+            
+            else {
+                imc = parseFloat(peso / (altura * altura)).toFixed(2);
+                document.querySelector('#output').innerHTML =
+                    'Seu IMC: ' + imc;
 
-            document.querySelector('#output').innerHTML =
-                'Seu IMC: ' + imc;
-
-            classificarImc(imc);
+                classificarImc(imc);
+            }
         }
 
         function classificarImc(imc) {
