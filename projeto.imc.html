@@ -4,63 +4,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOM</title>
+    <title>Calculadora de IMC</title>
 
     <style>
-        body {
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', sans-serif;
+        @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+        body{
+            font-family: 'Varela Round', sans-serif;
+            background-color: #fbf5f1;
         }
 
-        .main{
+        #title {
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .main {
             width: 25%;
             display: flex;
             flex-direction: column;
+            margin: 50px 0 0 30px;
         }
 
-        .item{
+        .item {
             padding-left: 10px;
             margin-bottom: 20px;
             width: 100%;
             height: 30px;
         }
 
-        .main button{
+        input {
+            border: 1px solid rgb(206, 202, 202);
+            outline: 0;
+        }
+
+        button {
+            border: 1px solid rgb(206, 202, 202);
+        }
+
+        button:hover{
+            background-color: #EFD3BF;
+            transition: .8s all ease-out;
+        }
+
+        .main button {
             width: 50%;
             margin: 0 auto;
 
         }
 
-        label{
+        table {
+            width: 100%;
+            height: 200px;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabela h3 {
+            text-align: center;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        img {
+            width: 100%;
+            height: 300px;
+        }
+
+        .container {
+            margin-left: 10px;
+            display: flex;
+            flex-direction: row;
+
+        }
+
+        .tabela {
+            background-color: #ffffff;
             display: flex;
             flex-direction: column;
-            margin: 0;
+            margin: 50px auto;
         }
     </style>
 </head>
 
 <body>
-    <h1 id="title">Calculadora de IMC</h1>
-    <h2>Afina, o que é IMC?</h2>
-    <p>
-        o Índice de Massa Corporal, conhecido pela sigla IMC, 
-        é um cálculo simples que permite medir se alguém está 
-        ou não com o peso ideal.
-    </p>
+    <div>
+        <h1 id="title">Calculadora de IMC</h1>
+        <h2>Afinal, o que é IMC?</h2>
+        <p>
+            o Índice de Massa Corporal, conhecido pela sigla IMC,
+            é um cálculo simples que permite medir se alguém está
+            ou não com o peso ideal.
+        </p>
 
-    <div class="main">
-        <label for="peso">Peso
-            <input class="item" type="text" id="peso" value="" placeholder="seu peso">
-        </label>
+        <div class="backImage">
+            <img src="medidas.jpg" alt="">
+        </div>
 
-        <label for="altura">Altura
-            <input class="item" type="text" id="altura" value="" placeholder="sua altura">
-        </label>
+        <div class="container">
+            <div class="table">
+                <h3>Medidas</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>IMC</th>
+                            <th>Classificação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Menor que 16.9</td>
+                            <td>Muito abaixo do peso</td>
+                        </tr>
+                        <tr>
+                            <td>Entre 16.4 e 18.5</td>
+                            <td>Abaixo do peso</td>
+                        </tr>
+                        <tr>
+                            <td>Entre 18.5 e 24.9</td>
+                            <td>Normal</td>
+                        </tr>
+                        <tr>
+                            <td>Entre 25.0 e 29.9</td>
+                            <td>Acima do peso</td>
+                        </tr>
+                        <tr>
+                            <td>Entre 30.0 e 34.9</td>
+                            <td>Obesidade Grau I</td>
+                        </tr>
+                        <tr>
+                            <td>Entre 35 e 40</td>
+                            <td>Obesidade Grau II</td>
+                        </tr>
+                        <tr>
+                            <td>Maior que 40</td>
+                            <td>Obesidade Grau III</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-        <button class="item" onclick="calcularImc()">Calcular</button>
+            <div class="main">
+                <label for="peso">Peso
+                    <input class="item" type="text" id="peso" value="" placeholder="seu peso">
+                </label>
+
+                <label for="altura">Altura
+                    <input class="item" type="text" id="altura" value="" placeholder="sua altura">
+                </label>
+
+                <button class="item" onclick="calcularImc()">Calcular</button>
+                <div class="tabela">
+                    <div id="output"></div>
+                    <div id="classificacao"></div>
+                </div>
+            </div>
+
+        </div>
+
+
     </div>
 
-    <div id="output"></div>
-    <div id="classificacao"></div>
 
     <script>
         var classificacao = document.querySelector('#classificacao');
@@ -82,20 +204,20 @@
 
         function classificarImc(imc) {
             if (imc <= 16.9) {
-                classificacao.innerHTML = 'Classificação: muito abaixo do peso';
+                classificacao.innerHTML = 'Classificação: Muito abaixo do peso';
             } else if (imc <= 18.4) {
-                classificacao.innerHTML = 'Classificação: abaixo do peso';
+                classificacao.innerHTML = 'Classificação: Abaixo do peso';
             } else if (imc <= 24.9) {
-                classificacao.innerHTML = 'Classificação: normal';
+                classificacao.innerHTML = 'Classificação: Normal';
             } else if (imc <= 29.9) {
                 classificacao.innerHTML = 'Classificação: acima do peso';
             } else if (imc <= 34.9) {
-                classificacao.innerHTML = 'Classificação: obesidade 1';
+                classificacao.innerHTML = 'Classificação: Obesidade I';
             } else if (imc <= 40) {
-                classificacao.innerHTML = 'Classificação: obesidade 2';
+                classificacao.innerHTML = 'Classificação: Obesidade II';
 
             } else {
-                classificacao.innerHTML = 'obesidade 3';
+                classificacao.innerHTML = 'Classificação: Obesidade III';
             }
         }
 
