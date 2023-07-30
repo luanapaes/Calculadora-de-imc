@@ -2,107 +2,10 @@
 <html lang="pt-br">
 
 <head>
+    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de IMC</title>
-
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
-
-        body {
-            font-family: 'Varela Round', sans-serif;
-            background-color: #fbf5f1;
-        }
-
-        #title {
-            text-align: center;
-        }
-
-        .container {
-            display: flex;
-            flex-direction: row;
-        }
-
-        .main {
-            width: 25%;
-            display: flex;
-            flex-direction: column;
-            margin: 50px 0 0 30px;
-        }
-
-        .item {
-            padding-left: 10px;
-            margin-bottom: 20px;
-            width: 100%;
-            height: 30px;
-        }
-
-        input {
-            border: 1px solid rgb(206, 202, 202);
-            outline: 0;
-        }
-
-        button {
-            border: 1px solid rgb(206, 202, 202);
-        }
-
-        button:hover {
-            background-color: #EFD3BF;
-            transition: .8s all ease-out;
-        }
-
-        .main button {
-            width: 50%;
-            margin: 0 auto;
-
-        }
-
-        table {
-            width: 100%;
-            height: 200px;
-            border-collapse: collapse;
-            background-color: #fff;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .tabela h3 {
-            text-align: center;
-        }
-
-        th,
-        td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #f5ddcb;
-        }
-
-        tr:hover {
-            background-color: rgb(245, 226, 213);
-        }
-
-        img {
-            width: 100%;
-            height: 300px;
-        }
-
-        .container {
-            margin-left: 10px;
-            display: flex;
-            flex-direction: row;
-
-        }
-
-        .tabela {
-            background-color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            margin: 50px auto;
-        }
-    </style>
 </head>
 
 <body>
@@ -184,48 +87,7 @@
     </div>
 
 
-    <script>
-        var classificacao = document.querySelector('#classificacao');
-
-        var txtPeso = (document.querySelector('#peso'));
-        var txtAltura = (document.querySelector('#altura'));
-
-        function calcularImc() {
-            var peso = parseFloat(txtPeso.value);
-            var altura = parseFloat(txtAltura.value);
-
-            if (isNaN(peso) || isNaN(altura)){
-                document.querySelector('#output').innerHTML =
-                    'Informe seu peso e altura em números, não deixe os espaços vazios.';
-            }else {
-                imc = parseFloat(peso / (altura * altura)).toFixed(2);
-                document.querySelector('#output').innerHTML =
-                    'Seu IMC: ' + imc;
-
-                classificarImc(imc);
-            }
-        }
-
-        function classificarImc(imc) {
-            if (imc <= 16.9) {
-                classificacao.innerHTML = 'Classificação: Muito abaixo do peso';
-            } else if (imc <= 18.4) {
-                classificacao.innerHTML = 'Classificação: Abaixo do peso';
-            } else if (imc <= 24.9) {
-                classificacao.innerHTML = 'Classificação: Normal';
-            } else if (imc <= 29.9) {
-                classificacao.innerHTML = 'Classificação: acima do peso';
-            } else if (imc <= 34.9) {
-                classificacao.innerHTML = 'Classificação: Obesidade I';
-            } else if (imc <= 40) {
-                classificacao.innerHTML = 'Classificação: Obesidade II';
-
-            } else {
-                classificacao.innerHTML = 'Classificação: Obesidade III';
-            }
-        }
-
-    </script>
+    <script src="main.js"></script>
 </body>
 
 </html>
