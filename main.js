@@ -3,21 +3,6 @@ var classificacao = document.querySelector('#classificacao');
 var txtPeso = (document.querySelector('#peso'));
 var txtAltura = (document.querySelector('#altura'));
 
-function calcularImc() {
-    var peso = parseFloat(txtPeso.value);
-    var altura = parseFloat(txtAltura.value);
-
-    if (isNaN(peso) || isNaN(altura)) {
-        document.querySelector('#output').innerHTML =
-            'Informe seu peso e altura em números, não deixe os espaços vazios.';
-    } else {
-        imc = parseFloat(peso / (altura * altura)).toFixed(2);
-        document.querySelector('#output').innerHTML =
-            'Seu IMC: ' + imc;
-
-        classificarImc(imc);
-    }
-}
 
 function classificarImc(imc) {
     if (imc <= 16.9) {
@@ -35,5 +20,21 @@ function classificarImc(imc) {
 
     } else {
         classificacao.innerHTML = 'Classificação: Obesidade III';
+    }
+}
+
+function calcularImc() {
+    var peso = txtPeso.value;
+    var altura = txtAltura.value;
+
+    if (isNaN(peso) || isNaN(altura)) {
+        document.querySelector('#output').innerHTML =
+            'Informe seu peso e altura em números, não deixe os espaços vazios.';
+    } else {
+        imc = parseFloat(peso / (altura * altura)).toFixed(2);
+        document.querySelector('#output').innerHTML =
+            'Seu IMC: ' + imc;
+
+        classificarImc(imc);
     }
 }
